@@ -1,3 +1,32 @@
+/* HEADER AJUSTE */
+header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.logo-link img {
+    height: 52px;
+    cursor: pointer;
+}
+
+header .title {
+    flex: 1;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+header p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* OP CARD */
 .op-card {
     background: linear-gradient(180deg, #0e162b, #0c1326);
     border: 1px solid var(--border);
@@ -28,7 +57,7 @@
 }
 
 .op-header span {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
 }
 
@@ -89,20 +118,7 @@
     background: #2563eb;
 }
 
-.btn-edit {
-    background: transparent;
-    border: none;
-    color: #facc15;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-left: 6px;
-}
-
-.btn-edit:hover {
-    color: #fde047;
-}
-
-/* Paginação */
+/* PAGINAÇÃO */
 .paginacao {
     display: flex;
     justify-content: center;
@@ -126,13 +142,4 @@
 
 .paginacao button:hover {
     background: #182244;
-}
-
-tr.editando td input {
-    width: 100%;
-    background: #0e162b;
-    border: 1px solid var(--border);
-    color: #fff;
-    padding: 6px;
-    border-radius: 6px;
 }
