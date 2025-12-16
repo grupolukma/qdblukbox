@@ -1,74 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Impressão de Etiquetas - Lukbox Bombas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Sistema de Impressão de Etiquetas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="assets/css/estilo_etiqueta.css">
+    <!-- Fonte -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-    }
-    .container {
-      max-width: 800px;
-      background: #fff;
-      padding: 25px;
-      margin: auto;
-      border-radius: 6px;
-    }
-    label { font-weight: bold; display: block; margin-top: 10px; }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-    }
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      background: #0056b3;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    .menu-link {
-      display: block;
-      text-align: center;
-      margin-top: 15px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #0056b3;
-    }
-  </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
-
 <body>
+
 <div class="container">
-  <img src="assets/img/logo.png" style="max-width:150px;display:block;margin:auto">
-  <h2 style="text-align:center">Sistema de Etiquetas - Bombas</h2>
 
-  <label>OP</label>
-  <input type="text" id="op_numero" required>
+    <header>
+        <img src="assets/img/logo.png" alt="Logo">
 
-  <label>Quantidade de registros</label>
-  <select id="num_quadros" onchange="gerarCampos()">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-  </select>
+        <div class="title">
+            <h1>Impressão de Etiquetas</h1>
+            <p>Gerador de etiquetas de produção</p>
+        </div>
 
-  <div id="campos"></div>
+        <button type="button" id="btnNovaEtiqueta" class="btn-nova">
+            ➕ Nova Etiqueta
+        </button>
+    </header>
 
-  <button onclick="enviar()">Salvar e Imprimir</button>
+    <form id="formEtiquetas">
 
-  <a href="historico.html" class="menu-link">Ver Histórico</a>
+        <div class="input-group">
+            <label for="op_numero">Número da OP</label>
+            <input type="text" id="op_numero" required>
+        </div>
+
+        <div class="input-group">
+            <label for="num_quadros">Quantidade de Quadros</label>
+            <select id="num_quadros" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="view-toggle">
+            <span>Visualização:</span>
+            <button type="button" id="viewList" class="active">📋 Lista</button>
+            <button type="button" id="viewGrid">🧩 Cards</button>
+        </div>
+
+        <div id="campos_quadros" class="lista"></div>
+
+        <button type="submit">Imprimir e Salvar</button>
+    </form>
+
+    <a href="historico.php" class="menu-link">📊 Ver Histórico</a>
 </div>
 
-<script src="assets/js/app.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
