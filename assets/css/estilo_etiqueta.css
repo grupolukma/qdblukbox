@@ -1,0 +1,108 @@
+/*
+    assets/css/estilo_etiqueta.css
+    ======================================
+    Estilos exclusivos para impressão da etiqueta 100mm x 30mm.
+*/
+
+@media print {
+    /* --- CRÍTICO: Define o tamanho do papel na impressora --- */
+    @page {
+        size: 100mm 30mm; /* Largura x Altura */
+        margin: 0;
+    }
+
+    /* O corpo (body) não precisa ter o tamanho da página, apenas estilos globais e limpeza de margens */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        font-size: 8pt; 
+        /* Removido: width, height e page-break-after: always; */
+    }
+
+    /* --- Estrutura da Etiqueta 100mm --- */
+    .etiqueta-wrapper {
+        display: flex; 
+        width: 100mm;
+        height: 30mm;
+        overflow: hidden;
+        
+        /* ⭐️ ALTERAÇÃO CRÍTICA: Força uma nova folha (page break) após cada par de etiquetas */
+        page-break-after: always; 
+        page-break-inside: avoid; /* Evita que o par de etiquetas seja dividido no meio */
+    }
+
+    /* Impede quebra de página após o último par de etiquetas */
+    .etiqueta-wrapper:last-child {
+        page-break-after: auto;
+    }
+
+    /* Cada etiqueta individual é 50mm x 30mm */
+    .etiqueta {
+        position: relative; 
+        width: 50mm;
+        height: 30mm;
+        padding: 2mm; 
+        box-sizing: border-box; 
+        /* border-right: 1px dashed #000; */ 
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center; 
+    }
+
+    /* Remove a divisória da última etiqueta do par */
+    .etiqueta-wrapper .etiqueta:last-child {
+        border-right: none; 
+    }
+    
+    /* Logo afastado das bordas superior e direita (2mm) */
+    .logo {
+        position: absolute; 
+        top: 2mm; 
+        right: 2mm; 
+        width: 20mm; 
+        height: auto;
+        margin: 0; 
+    }
+
+    .campos-principais {
+        text-align: center; 
+        /* overflow: hidden;  */
+        line-height: 1.1;
+        margin-top: 5mm; 
+        
+        /* Aumenta o padding esquerdo para desviar da data (8mm) */
+        padding-left: 8mm; 
+        padding-right: 5mm; 
+    }
+    
+    .campos-principais p {
+        margin: 0;
+        padding: 0;
+        font-size: 10pt;
+    }
+    
+    .campos-principais strong {
+        font-weight: bold;
+    }
+
+    /* --- Data Rotacionada (Lateral/Horizontal) --- */
+    .data-lateral {
+        position: absolute;
+        top: 15mm; 
+        /* Move a data 2mm para a direita da borda (ponto inicial da rotação) */
+        left: 2mm; 
+        
+        /* Rotaciona em -90 graus e ajusta a posição para que fique legível ao longo da lateral */
+        transform: rotate(-90deg) translate(-50%, 0); 
+        transform-origin: 0 0; 
+        
+        white-space: nowrap;
+        font-size: 7pt;
+        font-weight: bold;
+        color: #000;
+        z-index: 10; 
+    }
+}

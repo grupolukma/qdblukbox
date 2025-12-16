@@ -1,0 +1,123 @@
+/*
+    assets/css/estilo_etiqueta.css
+    ======================================
+    Estilos exclusivos para impressão da etiqueta 100mm x 30mm
+    AJUSTADO para permitir aumento real de fonte
+*/
+
+@media print {
+
+    /* --- TAMANHO REAL DO PAPEL --- */
+    @page {
+        size: 100mm 30mm;
+        margin: 0;
+    }
+
+    /* --- CONFIGURAÇÕES GERAIS --- */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+
+        /* ⚠️ USANDO mm (não pt) */
+        font-size: 3mm;
+    }
+
+    /* --- WRAPPER DO PAR DE ETIQUETAS --- */
+    .etiqueta-wrapper {
+        display: flex;
+        width: 100mm;
+        height: 30mm;
+
+        page-break-after: always;
+        page-break-inside: avoid;
+    }
+
+    .etiqueta-wrapper:last-child {
+        page-break-after: auto;
+    }
+
+    /* --- ETIQUETA INDIVIDUAL (50mm x 30mm) --- */
+    .etiqueta {
+        position: relative;
+        width: 50mm;
+        height: 30mm;
+        padding: 2mm;
+        box-sizing: border-box;
+
+        border-right: 1px dashed #000;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        /* 🔥 REMOVIDO overflow hidden para permitir crescimento */
+        overflow: visible;
+    }
+
+    .etiqueta-wrapper .etiqueta:last-child {
+        border-right: none;
+    }
+
+    /* --- LOGO --- */
+    .logo {
+        position: absolute;
+        top: 2mm;
+        right: 2mm;
+        width: 15mm;
+        height: auto;
+    }
+
+    /* --- CAMPOS PRINCIPAIS (OP / CÓDIGO / MODELO) --- */
+    .campos-principais {
+        text-align: center;
+
+        /* 🔥 MAIS ESPAÇO VERTICAL */
+        line-height: 1.3;
+
+        margin-top: 5mm;
+
+        padding-left: 8mm;
+        padding-right: 5mm;
+
+        /* 🔥 NÃO CORTA TEXTO */
+        overflow: visible;
+
+        /* 🔥 AUMENTO CONTROLADO EXTRA */
+        transform: scale(1.05);
+        transform-origin: center;
+    }
+
+    .campos-principais p {
+        margin: 0;
+        padding: 0;
+
+        /* 🔥 TAMANHO REAL DE IMPRESSÃO */
+        font-size: 2.0mm;
+    }
+
+    .campos-principais strong {
+        font-weight: 700;
+        font-weight: bold;
+    }
+
+    /* --- DATA LATERAL ROTACIONADA --- */
+    .data-lateral {
+        position: absolute;
+        top: 15mm;
+        left: 2mm;
+
+        transform: rotate(-90deg) translate(-50%, 0);
+        transform-origin: 0 0;
+
+        white-space: nowrap;
+
+        /* 🔥 TAMANHO EM mm */
+        font-size: 2.8mm;
+        font-weight: bold;
+
+        color: #000;
+        z-index: 10;
+    }
+}
